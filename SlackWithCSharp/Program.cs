@@ -15,8 +15,8 @@ namespace SlackWithCSharp
                 Console.WriteLine("Please enter your message to send by slack");
                 string message = Console.ReadLine();
                 SlackMessage(message);
-                Console.WriteLine("Your message is sent!");
-                Console.Clear();
+                
+                Console.WriteLine($"Your message '{message}' is sent!");
             }
        
 
@@ -24,9 +24,9 @@ namespace SlackWithCSharp
         }
         public static void SlackMessage(string message)
         {
-            string urlWithAccesToken = "https://hooks.slack.com/services/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";
+            string urlWithAccesToken = "https://hooks.slack.com/services/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";
             SlackClient client = new SlackClient(urlWithAccesToken);
-            client.PostMessage(text:message, channel: "#general");
+            client.PostMessage(text:message, userName:"vhoagamo6", channel: "#general", iconEmoji:":umbrella:");
 
             //"https://{your_account}.slack.com/services/hooks/incoming-webhook?token={your_access_token}";
         }

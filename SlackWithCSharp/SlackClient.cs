@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SlackWithCSharp
 {
-    public class SlackClient
+    public sealed class SlackClient
     {
         private readonly Uri _uri;
         private readonly Encoding _encoding = new UTF8Encoding();
@@ -18,23 +18,23 @@ namespace SlackWithCSharp
             _uri = new Uri(urlWithAccessToken);
         }
 
-        public void PostMessage(string text, string userName=null, string channel = null)
+        public void PostMessage(string text, string userName=null, string channel = null, string iconEmoji=null)
         {
-            Payload payload = new Payload()
+            SlackMessage message = new SlackMessage()
             {
                 Channel=channel,
                 UserName=userName,
                 Text=text
+               
             };
-            PostMessage(payload);
+            PostMessage(message);
         }
-        public void PostMessage(Payload payload)
+        public void PostMessage(SlackMessage message)
         {
-            string payloadJson = JsonConvert.SerializeObject(payload);
             using (WebClient client=new WebClient())
             {
                 NameValueCollection data = new NameValueCollection();
-                data["payload"] = payloadJson;
+                data["payload"] = JsonConvert.SerializeObject(message);
                 var response = client.UploadValues(_uri, "POST", data);
                 string responseText = _encoding.GetString(response);
             }

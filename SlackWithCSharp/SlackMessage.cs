@@ -2,7 +2,7 @@
 
 namespace SlackWithCSharp
 {
-    public class Payload
+    public class SlackMessage
     {
         [JsonProperty("channel")]
         public string Channel { get; set; }
@@ -11,6 +11,15 @@ namespace SlackWithCSharp
 
         [JsonProperty("text")]
         public string Text { get; set; }
+        [JsonProperty("icon_emoji")]
+        public string Icon
+        {
+            get
+            {
+                return ":umbrella:";
+            }
+           
+        }
 
     }
 }
