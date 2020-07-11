@@ -2,7 +2,7 @@
 
 namespace SlackWithCSharp
 {
-    public class SlackMessage
+    public class SlackMessage2
     {
         [JsonProperty("channel")]
         public string Channel { get; set; }

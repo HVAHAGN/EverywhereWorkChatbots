@@ -9,18 +9,18 @@ using System.Threading.Tasks;
 
 namespace SlackWithCSharp
 {
-    public sealed class SlackClient
+    public  class SlackClient2
     {
         private readonly Uri _uri;
         private readonly Encoding _encoding = new UTF8Encoding();
-        public SlackClient(string urlWithAccessToken)
+        public SlackClient2(string urlWithAccessToken)
         {
             _uri = new Uri(urlWithAccessToken);
         }
 
         public void PostMessage(string text, string userName=null, string channel = null, string iconEmoji=null)
         {
-            SlackMessage message = new SlackMessage()
+            SlackMessage2 message = new SlackMessage2()
             {
                 Channel=channel,
                 UserName=userName,
@@ -29,7 +29,7 @@ namespace SlackWithCSharp
             };
             PostMessage(message);
         }
-        public void PostMessage(SlackMessage message)
+        public void PostMessage(SlackMessage2 message)
         {
             using (WebClient client=new WebClient())
             {
