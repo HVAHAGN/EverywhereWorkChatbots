@@ -26,11 +26,11 @@ namespace SendEmailWithSMTP
                     mail.Subject = "Error message from Umbrella";
                     mail.Body = message;
                     mail.IsBodyHtml = true;
-                    // mail.Attachments.Add(new Attachment("C:\\file.zip"));
+                    mail.Attachments.Add(new Attachment(@"C:\temp\data.txt"));
 
                     using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
                     {
-                        smtp.Credentials = new NetworkCredential(userName: "vhoagamo2@gmail.com", password: "133171vhan");
+                        smtp.Credentials = new NetworkCredential(userName: "vhoagamo2@gmail.com", password: "*****");
                         smtp.EnableSsl = true;
                         smtp.Send(mail);
                     }

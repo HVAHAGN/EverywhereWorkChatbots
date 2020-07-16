@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Slack.Webhooks;
 
@@ -17,9 +18,20 @@ namespace SlackWithCSharp
                 string message = Console.ReadLine();
                 Console.WriteLine("Please mention which channel you want to add this message");
                 var channelss = Console.ReadLine();
+
+                //Regex reg = new Regex(@"/([#&][^\x07\x2C\s]{,200})/");
+                //Match match;
+                //var results = new List<string>();
+                //for (match=reg.Match(channelss); match.Success; match=match.NextMatch())
+                //{
+                //    if (!results.Contains(match.Value))
+                //    {
+                //        results.Add(match.Value);
+                //    }
+                //}
                 
                 Console.WriteLine($"Your message '{message}' is sent!");
-                SlackClient client = new SlackClient("https://hooks.slack.com/services/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");
+                SlackClient client = new SlackClient("https://hooks.slack.com/services/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");
                 var channels = new List<string>();
                 if (channelss.Count()!=0 && channelss.Any())
                 {
@@ -34,9 +46,13 @@ namespace SlackWithCSharp
                     IconEmoji = ":umbrella:",
                     Channel="#general",
                     Text = message
+                    
                 };
-                
-                client.PostToChannels(slackMessage, channels);
+                var a = new SlackAttachment();
+                a.AuthorLink = @"C:\temp\data.txt";
+               // slackMessage.Attachments.Add(a);
+                // client.PostToChannels(slackMessage, channels);
+                client.PostToChannels(slackMessage,channels);
             }
        
 
